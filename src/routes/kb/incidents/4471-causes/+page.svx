@@ -1,0 +1,53 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: support desk
+status: living
+reviewed: 2026-10-28
+signature: woocache
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) merged every date report into one ticket and marked it known. The
+reports do not share one cause. Read one at a time, they fall into three problems, each with its
+own ticket in the public repo
+[woocache/ticket-4471-causes](https://github.com/woocache/ticket-4471-causes).
+
+<Callout>
+Not one issue. A fix for the parser alone leaves two problems open.
+</Callout>
+
+## What the reports say
+
+<CauseTable ticket={4471} />
+
+## The three problems
+
+1. **The parser reads dates month first.** Tenants that write the day first get flipped dates. This
+   is the cause `parser`, and the largest group. Ticket:
+   [issue 1](https://github.com/woocache/ticket-4471-causes/issues/1).
+2. **The booking-v3 form prints a month-first hint.** People at day-first tenants type what the
+   hint tells them, and the form reads it their way. This is the cause `hint`, and only form
+   reports show it. Ticket: [issue 2](https://github.com/woocache/ticket-4471-causes/issues/2).
+3. **Some invites move by exactly one day.** The desk read a few reports this way (see the note
+   under the table). The date is not month-flipped, so the parser fix does not explain them. The
+   cause is not yet investigated. Ticket:
+   [issue 3](https://github.com/woocache/ticket-4471-causes/issues/3).
+
+## Why #4471 hid this
+
+Intake tags a report from the reporter's browser, which is a guess. The cause depends on the
+tenant's locale and booking form, so the tag and the cause disagree (see the "tagged as" column).
+Merging by subject ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) never looks at either.
+
+## Lessons
+
+- Count by cause, not by subject. Merging early hides a second bug behind the first.
+- A ticket marked known should still say how many causes its reports hold.
+
+<RenderStamp {signature} />

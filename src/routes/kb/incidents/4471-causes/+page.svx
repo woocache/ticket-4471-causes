@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: support desk
 status: living
 reviewed: 2026-10-28
-signature: woocache
+signature: v1.eyJzdWIiOiI2NjEiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzIwMjM1NywiZXhwIjoxNzkzMjg4NzU3fQ.WkEnw-bZ1u8SwA-NpkcPe8fLwxpO8DUxL_qpFZT_4NQ
 ---
 
 <script>
